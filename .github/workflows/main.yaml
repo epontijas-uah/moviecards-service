@@ -44,10 +44,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    needs: build
       
     steps:
       - name: Download artifact from build job
@@ -57,9 +54,9 @@ jobs:
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'moviecards-service-hilera'
+          app-name: 'moviecards-service-pontijas'
           slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9AA79AE5BCB144B6A9C65F1723D3D874 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_66397D5E8DC64951A4E9CE4491FCB2A5 }}
